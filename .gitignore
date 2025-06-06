@@ -1,0 +1,48 @@
+# 先保留必要文件
+!.gitignore
+!/chat/
+chat/!.gitignore
+chat/*.pro
+chat/*.cpp
+chat/*.h
+chat/*.ui
+chat/*.qrc
+chat/*.hpp
+chat/*.inl
+
+# 再忽略其他文件
+*
+
+# 但不忽略chat目录下的特定文件类型
+!chat/
+chat/*
+!chat/*.pro
+!chat/*.cpp
+!chat/*.h
+!chat/*.ui
+!chat/*.qrc
+!chat/*.hpp
+!chat/*.inl
+
+# 忽略chat目录下的杂项
+chat/*.pro.user
+chat/*.pro.user.*
+chat/res/*.png
+chat/res/*.jpg
+chat/res/*.jpeg
+chat/res/*.gif
+chat/res/*.ico
+chat/build-*/
+chat/*.o
+chat/*.obj
+chat/*.a
+chat/*.lib
+chat/*.so
+chat/*.dll
+chat/*.exe
+chat/*.app
+chat/*.dSYM/
+chat/*.bak
+chat/*.tmp
+chat/*.log
+chat/*.swp
