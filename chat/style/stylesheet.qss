@@ -1,0 +1,15 @@
+QDialog#LoginDialog,#RegisterDialog{
+    background-color:rgb(255,255,255)
+}
+
+#userLabel,#pwdLabel{
+    color:black;
+}
+
+#errorLabel[state='normal']{
+    color:green
+}
+
+#errorLabel[state='error']{
+    color:red
+}
