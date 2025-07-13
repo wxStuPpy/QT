@@ -18,6 +18,15 @@ int main(int argc, char *argv[])
         qDebug()<<" open qss failed";
     }
 
+    //从config.ini配置文件中读取GateServer的host和port信息，构建HTTP请求前缀
+    QString fileName="config.ini";
+    QString app_path=QApplication::applicationDirPath();
+    QString config_path=QDir::toNativeSeparators(app_path+QDir::separator()+fileName);
+    QSettings settings(config_path,QSettings::IniFormat);
+    QString gate_host = settings.value("GateServer/host").toString();
+    QString gate_port = settings.value("GateServer/port").toString();
+    gateURLPrefix = "http://"+gate_host+":"+gate_port;
+
 
     MainWindow w;
     w.show();

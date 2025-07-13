@@ -4,3 +4,5 @@ std::function<void(QWidget*)>rePolish=[](QWidget*w){
     w->style()->unpolish(w);
     w->style()->polish(w);
 };
+
+QString gateURLPrefix="";
