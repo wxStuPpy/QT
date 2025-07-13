@@ -17,15 +17,26 @@ public:
 	~RegisterDialog();
 
 private slots:
+	// 获取验证码按钮的点击事件
 	void on_getCode_clicked();
+
+	// 注册模块完成后的回调槽函数
 	void regModFinishSlot(ReqID id, QString res, ErrorCodes ec);
+
+	// 确认按钮的点击事件
 	void on_confirmBtn_clicked();
 
 private:
+	// 初始化处理网络请求的回调函数
 	void initHttpHandlers();
-	void showTip(QString, bool);
+
+	// 显示提示信息的函数，显示成功/失败的提示
+	void showTip(QString message, bool success);
+
 	Ui::RegisterDialog* ui;
-	QMap<ReqID, std::function<void(const QJsonObject&)>>_handlers;
+
+	// 存储注册模块的回调函数，根据不同请求 ID，执行相应的函数
+	QMap<ReqID, std::function<void(const QJsonObject&)>> _handlers;
 };
 
 #endif // REGISTERDIALOG_H
