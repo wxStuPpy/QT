@@ -20,6 +20,7 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <timerbtn.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -44,13 +45,15 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLabel *pwdLabel;
     QLineEdit *pwdEdit;
+    QLabel *pwdVisible;
     QHBoxLayout *horizontalLayout_7;
     QLabel *confirmLabel;
     QLineEdit *confirmEdit;
+    QLabel *confVisible;
     QHBoxLayout *horizontalLayout_8;
     QLabel *varifyLabel;
     QLineEdit *verifyEdit;
-    QPushButton *getCode;
+    TimerBtn *getCode;
     QSpacerItem *verticalSpacer_3;
     QHBoxLayout *horizontalLayout_9;
     QPushButton *confirmBtn;
@@ -83,7 +86,7 @@ public:
         verticalLayout_4->setObjectName("verticalLayout_4");
         errorLabel = new QLabel(widget);
         errorLabel->setObjectName("errorLabel");
-        errorLabel->setAlignment(Qt::AlignCenter);
+        errorLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_4->addWidget(errorLabel);
 
@@ -144,6 +147,13 @@ public:
 
         horizontalLayout_6->addWidget(pwdEdit);
 
+        pwdVisible = new QLabel(page);
+        pwdVisible->setObjectName("pwdVisible");
+        pwdVisible->setMinimumSize(QSize(20, 20));
+        pwdVisible->setMaximumSize(QSize(20, 20));
+
+        horizontalLayout_6->addWidget(pwdVisible);
+
 
         verticalLayout_3->addLayout(horizontalLayout_6);
 
@@ -162,6 +172,13 @@ public:
         confirmEdit->setMaximumSize(QSize(16777215, 25));
 
         horizontalLayout_7->addWidget(confirmEdit);
+
+        confVisible = new QLabel(page);
+        confVisible->setObjectName("confVisible");
+        confVisible->setMinimumSize(QSize(20, 20));
+        confVisible->setMaximumSize(QSize(20, 20));
+
+        horizontalLayout_7->addWidget(confVisible);
 
 
         verticalLayout_3->addLayout(horizontalLayout_7);
@@ -182,7 +199,7 @@ public:
 
         horizontalLayout_8->addWidget(verifyEdit);
 
-        getCode = new QPushButton(page);
+        getCode = new TimerBtn(page);
         getCode->setObjectName("getCode");
         getCode->setMinimumSize(QSize(0, 25));
         getCode->setMaximumSize(QSize(16777215, 25));
@@ -239,10 +256,12 @@ public:
     {
         RegisterDialog->setWindowTitle(QCoreApplication::translate("RegisterDialog", "Dialog", nullptr));
         errorLabel->setText(QCoreApplication::translate("RegisterDialog", "error", nullptr));
-        userLabel->setText(QCoreApplication::translate("RegisterDialog", "\347\224\250\346\210\267:", nullptr));
+        userLabel->setText(QCoreApplication::translate("RegisterDialog", "\347\224\250\346\210\267", nullptr));
         emailLabel->setText(QCoreApplication::translate("RegisterDialog", "\351\202\256\347\256\261:", nullptr));
         pwdLabel->setText(QCoreApplication::translate("RegisterDialog", "\345\257\206\347\240\201:", nullptr));
+        pwdVisible->setText(QString());
         confirmLabel->setText(QCoreApplication::translate("RegisterDialog", "\347\241\256\350\256\244:", nullptr));
+        confVisible->setText(QString());
         varifyLabel->setText(QCoreApplication::translate("RegisterDialog", "\351\252\214\350\257\201\347\240\201:", nullptr));
         getCode->setText(QCoreApplication::translate("RegisterDialog", "\350\216\267\345\217\226\351\252\214\350\257\201\347\240\201", nullptr));
         confirmBtn->setText(QCoreApplication::translate("RegisterDialog", "\347\241\256\350\256\244", nullptr));

@@ -37,6 +37,17 @@ private:
 
 	// 存储注册模块的回调函数，根据不同请求 ID，执行相应的函数
 	QMap<ReqID, std::function<void(const QJsonObject&)>> _handlers;
+
+	// 检查用户输入的用户名、邮箱、密码和验证码是否有效
+	bool checkUserValid();
+	bool checkEmailValid();
+	bool checkPassValid();
+	bool checkConfirmValid();
+	bool checkVerifyValid();
+
+	QMap<TipErr, QString> _tip_errs;
+	void AddTipErr(TipErr te, QString tips);
+	void DelTipErr(TipErr te);
 };
 
 #endif // REGISTERDIALOG_H
