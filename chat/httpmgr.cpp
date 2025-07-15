@@ -50,6 +50,10 @@ void HttpMgr::postHttpReq(QUrl url, QJsonObject json, ReqID reqID, Modules mod)
 		if (reply->error() != QNetworkReply::NoError) {
 			// 打印错误信息（可替换为日志记录）
 			qDebug() << "Network error:" << reply->errorString();
+			qDebug() << " Error code:" << reply->error();                             // 枚举值
+			qDebug() << " Error string:" << reply->errorString();                    // 可读描述
+			qDebug() << " HTTP status code:"
+				<< reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();  // HTTP 状态码
 			// 发送错误信号（错误码为网络错误）
 			emit self->httpFinishSig(reqID, "", ErrorCodes::ERR_NETWORK, mod);
 			// 释放响应对象（异步）

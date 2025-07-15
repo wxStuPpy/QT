@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 	QString gate_host = settings.value("GateServer/host").toString();
 	QString gate_port = settings.value("GateServer/port").toString();
 	gateURLPrefix = "http://" + gate_host + ":" + gate_port;
-
+	qDebug() << "GateServer URL Prefix: " << gateURLPrefix;
 	MainWindow w;
 	w.show();
 	return a.exec();

@@ -80,6 +80,7 @@ void RegisterDialog::initHttpHandlers()
 	// 处理获取验证码的回调
 	_handlers.insert(ReqID::ID_GET_VERIFY_CODE, [this](const QJsonObject& jsonObj) {
 		int error = jsonObj["error"].toInt(); // 获取错误码
+		qDebug() << "get verify code error is" << error;
 		if (error != ErrorCodes::SUCCESS) { // 如果出错，显示错误提示
 			showTip(tr("Parameter error"), false);
 			return;
@@ -155,8 +156,8 @@ void RegisterDialog::on_confirmBtn_clicked()
 	QJsonObject json_obj;
 	json_obj["user"] = ui->userEdit->text();
 	json_obj["email"] = ui->emailEdit->text();
-	json_obj["passwd"] = ui->pwdEdit->text();
-	json_obj["confirm"] = ui->confirmEdit->text();
+	json_obj["passwd"] = xorString(ui->pwdEdit->text());
+	json_obj["confirm"] = xorString(ui->confirmEdit->text());
 	json_obj["verifycode"] = ui->verifyEdit->text();
 	// 发送用户注册的 HTTP 请求
 	HttpMgr::getInstance()->postHttpReq(QUrl(gateURLPrefix + "/user_register"),

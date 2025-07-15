@@ -19,6 +19,8 @@
  */
 extern std::function<void(QWidget*)>rePolish;
 
+extern std::function<QString(QString)>xorString;
+
 enum ReqID {
 	ID_GET_VERIFY_CODE = 1001,//获取验证码
 	ID_REG_USER = 1002,//注册用户
