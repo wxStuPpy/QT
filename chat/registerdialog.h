@@ -26,12 +26,17 @@ private slots:
 	// 确认按钮的点击事件
 	void on_confirmBtn_clicked();
 
+	void on_returnBtn_clicked();
+
 private:
 	// 初始化处理网络请求的回调函数
 	void initHttpHandlers();
 
 	// 显示提示信息的函数，显示成功/失败的提示
 	void showTip(QString message, bool success);
+
+	//修改页面
+	void changeTipPage();
 
 	Ui::RegisterDialog* ui;
 
@@ -48,6 +53,12 @@ private:
 	QMap<TipErr, QString> _tip_errs;
 	void AddTipErr(TipErr te, QString tips);
 	void DelTipErr(TipErr te);
+
+	QTimer* _countDownTimer;
+	int _countDown;
+
+signals:
+	void sigSwitchLogin();
 };
 
 #endif // REGISTERDIALOG_H

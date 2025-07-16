@@ -6,7 +6,8 @@
 // 构造函数：初始化 UI 和设置初始状态
 RegisterDialog::RegisterDialog(QWidget* parent) :
 	QDialog(parent),
-	ui(new Ui::RegisterDialog) // 初始化 UI 组件
+	ui(new Ui::RegisterDialog),// 初始化 UI 组件
+	_countDown(5)
 {
 	ui->setupUi(this); // 设置界面
 	// 设置密码输入框为密码模式，隐藏密码
@@ -40,8 +41,53 @@ RegisterDialog::RegisterDialog(QWidget* parent) :
 		checkVerifyValid();
 		});
 
+	//设置鼠标指针样式为手型
 	ui->pwdVisible->setCursor(Qt::PointingHandCursor);
 	ui->confVisible->setCursor(Qt::PointingHandCursor);
+	// 设置密码可见性切换按钮的状态
+	ui->pwdVisible->setState("unvisible", "unvisible_hover", "", "visible",
+		"visible_hover", "");
+	ui->confVisible->setState("unvisible", "unvisible_hover", "", "visible",
+		"visible_hover", "");
+
+	//连接点击事件
+	connect(ui->pwdVisible, &ClickedLabel::clicked, this, [this]() {
+		auto state = ui->pwdVisible->getCurState();
+		if (state == ClickLbState::Normal) {
+			ui->pwdEdit->setEchoMode(QLineEdit::Password);
+		}
+		else {
+			ui->pwdEdit->setEchoMode(QLineEdit::Normal);
+		}
+		qDebug() << "Label was clicked!";
+		});
+	connect(ui->confVisible, &ClickedLabel::clicked, this, [this]() {
+		auto state = ui->confVisible->getCurState();
+		if (state == ClickLbState::Normal) {
+			ui->confirmEdit->setEchoMode(QLineEdit::Password);
+		}
+		else {
+			ui->confirmEdit->setEchoMode(QLineEdit::Normal);
+		}
+		qDebug() << "Label was clicked!";
+		});
+
+	// 创建定时器
+	_countDownTimer = new QTimer(this);
+	// 连接信号和槽
+	connect(_countDownTimer, &QTimer::timeout, [this]() {
+		if (_countDown == 0) {
+			_countDownTimer->stop();
+			emit sigSwitchLogin();
+			return;
+		}
+		_countDown--;
+		auto str = QString("Registration successful, returning to login in %1 s").arg(_countDown);;
+		ui->tip1Label->setText(str);
+		});
+
+	//连接返回按钮的点击事件
+	connect(ui->returnBtn, &QPushButton::clicked, this, &RegisterDialog::on_returnBtn_clicked);
 }
 
 // 析构函数：销毁 UI 组件
@@ -124,6 +170,8 @@ void RegisterDialog::initHttpHandlers()
 		showTip(tr("The user has registered successfully."), true);
 		qDebug() << "user uid is" << jsonObj["uid"].toString();
 		qDebug() << "email is " << email;
+		// 切换到登录页面
+		changeTipPage();
 		});
 }
 void RegisterDialog::AddTipErr(TipErr te, QString tips)
@@ -154,6 +202,14 @@ void RegisterDialog::showTip(QString str, bool ok)
 	}
 	// 刷新控件
 	rePolish(ui->errorLabel);
+}
+
+void RegisterDialog::changeTipPage()
+{
+	_countDownTimer->stop();
+	ui->stackedWidget->setCurrentWidget(ui->page_2);
+	// 启动定时器，设置间隔为1000毫秒（1秒）
+	_countDownTimer->start(1000);
 }
 
 bool RegisterDialog::checkUserValid()
@@ -258,4 +314,12 @@ void RegisterDialog::on_confirmBtn_clicked()
 	// 发送用户注册的 HTTP 请求
 	HttpMgr::getInstance()->postHttpReq(QUrl(gateURLPrefix + "/user_register"),
 		json_obj, ReqID::ID_REG_USER, Modules::REGISTERMOD);
+}
+
+void RegisterDialog::on_returnBtn_clicked()
+{
+	// 停止定时器
+	_countDownTimer->stop();
+	// 切换到登录页面
+	emit sigSwitchLogin();
 }

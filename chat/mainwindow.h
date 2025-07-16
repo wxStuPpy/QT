@@ -19,18 +19,18 @@ QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
-
+	Q_OBJECT
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+	MainWindow(QWidget* parent = nullptr);
+	~MainWindow();
 
 public slots:
-    void slotSwitchReg();
+	void slotSwitchReg();
+	void slotSwitchLogin();
 
 private:
-    Ui::MainWindow *ui;
-    LoginDialog *_loginDialog;
-    RegisterDialog *_regDialog;
+	Ui::MainWindow* ui;
+	LoginDialog* _loginDialog;
+	RegisterDialog* _regDialog;
 };
 #endif // MAINWINDOW_H

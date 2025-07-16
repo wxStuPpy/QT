@@ -20,6 +20,7 @@
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <clickedlabel.h>
 #include <timerbtn.h>
 
 QT_BEGIN_NAMESPACE
@@ -45,11 +46,11 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QLabel *pwdLabel;
     QLineEdit *pwdEdit;
-    QLabel *pwdVisible;
+    ClickedLabel *pwdVisible;
     QHBoxLayout *horizontalLayout_7;
     QLabel *confirmLabel;
     QLineEdit *confirmEdit;
-    QLabel *confVisible;
+    ClickedLabel *confVisible;
     QHBoxLayout *horizontalLayout_8;
     QLabel *varifyLabel;
     QLineEdit *verifyEdit;
@@ -60,12 +61,23 @@ public:
     QPushButton *cancelBtn;
     QSpacerItem *verticalSpacer_2;
     QWidget *page_2;
+    QVBoxLayout *verticalLayout_5;
+    QSpacerItem *verticalSpacer_4;
+    QLabel *tip1Label;
+    QLabel *tip2Label;
+    QSpacerItem *verticalSpacer_6;
+    QWidget *widget_2;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *returnBtn;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *verticalSpacer_5;
 
     void setupUi(QDialog *RegisterDialog)
     {
         if (RegisterDialog->objectName().isEmpty())
             RegisterDialog->setObjectName("RegisterDialog");
-        RegisterDialog->resize(300, 500);
+        RegisterDialog->resize(306, 500);
         verticalLayout_2 = new QVBoxLayout(RegisterDialog);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout = new QVBoxLayout();
@@ -147,7 +159,7 @@ public:
 
         horizontalLayout_6->addWidget(pwdEdit);
 
-        pwdVisible = new QLabel(page);
+        pwdVisible = new ClickedLabel(page);
         pwdVisible->setObjectName("pwdVisible");
         pwdVisible->setMinimumSize(QSize(20, 20));
         pwdVisible->setMaximumSize(QSize(20, 20));
@@ -173,7 +185,7 @@ public:
 
         horizontalLayout_7->addWidget(confirmEdit);
 
-        confVisible = new QLabel(page);
+        confVisible = new ClickedLabel(page);
         confVisible->setObjectName("confVisible");
         confVisible->setMinimumSize(QSize(20, 20));
         confVisible->setMaximumSize(QSize(20, 20));
@@ -239,6 +251,54 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
+        verticalLayout_5 = new QVBoxLayout(page_2);
+        verticalLayout_5->setObjectName("verticalLayout_5");
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer_4);
+
+        tip1Label = new QLabel(page_2);
+        tip1Label->setObjectName("tip1Label");
+        tip1Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_5->addWidget(tip1Label);
+
+        tip2Label = new QLabel(page_2);
+        tip2Label->setObjectName("tip2Label");
+        tip2Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_5->addWidget(tip2Label);
+
+        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer_6);
+
+        widget_2 = new QWidget(page_2);
+        widget_2->setObjectName("widget_2");
+        horizontalLayout_3 = new QHBoxLayout(widget_2);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer);
+
+        returnBtn = new QPushButton(widget_2);
+        returnBtn->setObjectName("returnBtn");
+        returnBtn->setMinimumSize(QSize(100, 25));
+        returnBtn->setMaximumSize(QSize(0, 25));
+
+        horizontalLayout_3->addWidget(returnBtn);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_2);
+
+
+        verticalLayout_5->addWidget(widget_2);
+
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer_5);
+
         stackedWidget->addWidget(page_2);
 
         verticalLayout->addWidget(stackedWidget);
@@ -248,6 +308,9 @@ public:
 
 
         retranslateUi(RegisterDialog);
+
+        stackedWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(RegisterDialog);
     } // setupUi
@@ -266,6 +329,9 @@ public:
         getCode->setText(QCoreApplication::translate("RegisterDialog", "\350\216\267\345\217\226\351\252\214\350\257\201\347\240\201", nullptr));
         confirmBtn->setText(QCoreApplication::translate("RegisterDialog", "\347\241\256\350\256\244", nullptr));
         cancelBtn->setText(QCoreApplication::translate("RegisterDialog", "\345\217\226\346\266\210", nullptr));
+        tip1Label->setText(QCoreApplication::translate("RegisterDialog", "Registration successful, returning in 5 seconds.", nullptr));
+        tip2Label->setText(QCoreApplication::translate("RegisterDialog", "Click the button to return immediately", nullptr));
+        returnBtn->setText(QCoreApplication::translate("RegisterDialog", "Return to login", nullptr));
     } // retranslateUi
 
 };
