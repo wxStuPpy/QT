@@ -147,9 +147,9 @@ void RegisterDialog::initHttpHandlers()
 	// 处理获取验证码的回调
 	_handlers.insert(ReqID::ID_GET_VERIFY_CODE, [this](const QJsonObject& jsonObj) {
 		int error = jsonObj["error"].toInt(); // 获取错误码
-		qDebug() << "get verify code error is" << error;
 		if (error != ErrorCodes::SUCCESS) { // 如果出错，显示错误提示
 			showTip(tr("Parameter error"), false);
+			qDebug() << "get verify code error is" << error;
 			return;
 		}
 		auto email = jsonObj["email"].toString(); // 获取返回的邮箱
@@ -162,6 +162,7 @@ void RegisterDialog::initHttpHandlers()
 	_handlers.insert(ReqID::ID_REG_USER, [this](QJsonObject jsonObj) {
 		int error = jsonObj["error"].toInt(); // 获取错误码
 		if (error != ErrorCodes::SUCCESS) { // 如果出错，显示错误提示
+			qDebug() << "get verify code error is" << error;
 			showTip(tr("Parameter error"), false);
 			return;
 		}

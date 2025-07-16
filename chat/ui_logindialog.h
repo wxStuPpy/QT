@@ -20,6 +20,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <clickedlabel.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -40,7 +41,7 @@ public:
     QLineEdit *pwdEdit;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer;
-    QLabel *forgetLabel;
+    ClickedLabel *forgetLabel;
     QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_2;
@@ -70,7 +71,7 @@ public:
         label = new QLabel(widget);
         label->setObjectName("label");
         label->setPixmap(QPixmap(QString::fromUtf8(":/res/ice.png")));
-        label->setAlignment(Qt::AlignCenter);
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
@@ -129,7 +130,7 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer);
 
-        forgetLabel = new QLabel(LoginDialog);
+        forgetLabel = new ClickedLabel(LoginDialog);
         forgetLabel->setObjectName("forgetLabel");
         forgetLabel->setMinimumSize(QSize(0, 25));
         forgetLabel->setMaximumSize(QSize(16777215, 25));
