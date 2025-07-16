@@ -36,6 +36,7 @@ enum ErrorCodes {
 	ERR_NETWORK = 2,//网络错误
 };
 
+// 错误码枚举
 enum TipErr {
 	TIP_SUCCESS = 0,
 	TIP_EMAIL_ERR = 1,
@@ -44,6 +45,12 @@ enum TipErr {
 	TIP_PWD_CONFIRM = 4,
 	TIP_VARIFY_ERR = 5,
 	TIP_USER_ERR = 6
+};
+
+//鼠标点击标签的状态
+enum ClickLbState {
+	Normal = 0,
+	Selected = 1
 };
 
 extern QString gateURLPrefix;
