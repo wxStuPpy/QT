@@ -7,6 +7,12 @@ void HttpMgr::httpFinishSlot(ReqID id, QString res, ErrorCodes ec, Modules mod)
 		//发送信号通知指定模块http的响应结束了
 		emit regModFinishSig(id, res, ec);
 	}
+
+	if (mod == Modules::RESETMOD)
+	{
+		//发送信号通知指定模块http的响应结束了
+		emit resetModFinishSig(id, res, ec);
+	}
 }
 
 HttpMgr::~HttpMgr()

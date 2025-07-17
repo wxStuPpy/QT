@@ -88,6 +88,8 @@ RegisterDialog::RegisterDialog(QWidget* parent) :
 
 	//连接返回按钮的点击事件
 	connect(ui->returnBtn, &QPushButton::clicked, this, &RegisterDialog::on_returnBtn_clicked);
+	//连接取消按钮的点击事件
+	connect(ui->cancelBtn, &QPushButton::clicked, this, &RegisterDialog::on_cancel_btn_clicked);
 }
 
 // 析构函数：销毁 UI 组件
@@ -318,6 +320,14 @@ void RegisterDialog::on_confirmBtn_clicked()
 }
 
 void RegisterDialog::on_returnBtn_clicked()
+{
+	// 停止定时器
+	_countDownTimer->stop();
+	// 切换到登录页面
+	emit sigSwitchLogin();
+}
+
+void RegisterDialog::on_cancel_btn_clicked()
 {
 	// 停止定时器
 	_countDownTimer->stop();

@@ -27,6 +27,7 @@ private slots:
 	void on_confirmBtn_clicked();
 
 	void on_returnBtn_clicked();
+	void on_cancel_btn_clicked();
 
 private:
 	// 初始化处理网络请求的回调函数

@@ -49,6 +49,7 @@ signals:
 	 */
 	void httpFinishSig(ReqID reqID, QString res, ErrorCodes ec, Modules mod);
 	void regModFinishSig(ReqID id, QString res, ErrorCodes ec);
+	void resetModFinishSig(ReqID id, QString res, ErrorCodes ec);
 };
 
 #endif // HTTPMGR_H
