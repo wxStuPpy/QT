@@ -49,7 +49,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QWidget *widget_5;
     QHBoxLayout *horizontalLayout_5;
-    QPushButton *sure_btn;
+    QPushButton *sureBtn;
     QPushButton *returnBtn;
     QSpacerItem *verticalSpacer_3;
 
@@ -171,12 +171,12 @@ public:
         widget_5->setObjectName("widget_5");
         horizontalLayout_5 = new QHBoxLayout(widget_5);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
-        sure_btn = new QPushButton(widget_5);
-        sure_btn->setObjectName("sure_btn");
-        sure_btn->setMinimumSize(QSize(0, 25));
-        sure_btn->setMaximumSize(QSize(16777215, 25));
+        sureBtn = new QPushButton(widget_5);
+        sureBtn->setObjectName("sureBtn");
+        sureBtn->setMinimumSize(QSize(0, 25));
+        sureBtn->setMaximumSize(QSize(16777215, 25));
 
-        horizontalLayout_5->addWidget(sure_btn);
+        horizontalLayout_5->addWidget(sureBtn);
 
         returnBtn = new QPushButton(widget_5);
         returnBtn->setObjectName("returnBtn");
@@ -207,7 +207,7 @@ public:
         verifyLabel->setText(QCoreApplication::translate("ResetDialog", "\351\252\214\350\257\201\347\240\201\357\274\232", nullptr));
         verifyBtn->setText(QCoreApplication::translate("ResetDialog", "\350\216\267\345\217\226", nullptr));
         pwdLabel->setText(QCoreApplication::translate("ResetDialog", "\346\226\260\345\257\206\347\240\201\357\274\232", nullptr));
-        sure_btn->setText(QCoreApplication::translate("ResetDialog", "\347\241\256\350\256\244", nullptr));
+        sureBtn->setText(QCoreApplication::translate("ResetDialog", "\347\241\256\350\256\244", nullptr));
         returnBtn->setText(QCoreApplication::translate("ResetDialog", "\350\277\224\345\233\236", nullptr));
     } // retranslateUi
 

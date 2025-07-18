@@ -27,6 +27,10 @@ ResetDialog::ResetDialog(QWidget* parent) :
 		checkVerifyValid();
 		});
 
+	//连接确认和返回
+	connect(ui->sureBtn, &QPushButton::clicked, this, &ResetDialog::on_sure_btn_clicked);
+	connect(ui->returnBtn, &QPushButton::clicked, this, &ResetDialog::on_return_btn_clicked);
+	connect(ui->verifyBtn, &QPushButton::clicked, this, &ResetDialog::on_verify_btn_clicked);
 	//连接reset相关信号和注册处理回调
 	initHandlers();
 	connect(HttpMgr::getInstance().get(), &HttpMgr::resetModFinishSig, this,

@@ -110,7 +110,7 @@ void RegisterDialog::on_getCode_clicked()
 		// 如果邮箱格式正确，发送 HTTP 请求
 		QJsonObject jsonObj;
 		jsonObj["email"] = email; // 将邮箱放入 JSON 请求体
-		HttpMgr::getInstance()->postHttpReq(QUrl(gateURLPrefix + "/post_test"),
+		HttpMgr::getInstance()->postHttpReq(QUrl(gateURLPrefix + "/get_verifycode"),
 			jsonObj, ReqID::ID_GET_VERIFY_CODE, Modules::REGISTERMOD);
 	}
 	else {
