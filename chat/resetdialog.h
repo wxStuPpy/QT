@@ -15,10 +15,10 @@ public:
 	~ResetDialog();
 
 private slots:
-	void on_return_btn_clicked();
-	void on_verify_btn_clicked();
+	void onReturnBtnClicked();
+	void onVerifyBtnClicked();
 	void slotResetModFinish(ReqID id, QString res, ErrorCodes err);
-	void on_sure_btn_clicked();
+	void onSureBtnClicked();
 	//void on_cancel_btn_clicked();
 
 private:

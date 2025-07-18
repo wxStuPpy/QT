@@ -17,6 +17,7 @@ signals:
 
 public slots:
 	void slotForgetPwd();
+	void onLoginBtnClicked();
 
 public:
 	explicit LoginDialog(QWidget* parent = nullptr);
@@ -24,6 +25,9 @@ public:
 
 private:
 	Ui::LoginDialog* ui;
+	void initHeadImg();
+	bool checkUserValid();
+	bool checkPwdValid();
 };
 
 #endif // LOGINDIALOG_H

@@ -31,11 +31,12 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *widget;
     QGridLayout *gridLayout;
-    QLabel *label;
+    QLabel *errorLabel;
+    QLabel *headLabel;
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout;
-    QLabel *userLabel;
-    QLineEdit *userEdit;
+    QLabel *emailLabel;
+    QLineEdit *emailEdit;
     QHBoxLayout *horizontalLayout_2;
     QLabel *pwdLabel;
     QLineEdit *pwdEdit;
@@ -68,12 +69,19 @@ public:
         widget->setObjectName("widget");
         gridLayout = new QGridLayout(widget);
         gridLayout->setObjectName("gridLayout");
-        label = new QLabel(widget);
-        label->setObjectName("label");
-        label->setPixmap(QPixmap(QString::fromUtf8(":/res/ice.png")));
-        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        errorLabel = new QLabel(widget);
+        errorLabel->setObjectName("errorLabel");
+        errorLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        gridLayout->addWidget(errorLabel, 0, 0, 1, 1);
+
+        headLabel = new QLabel(widget);
+        headLabel->setObjectName("headLabel");
+        headLabel->setMinimumSize(QSize(254, 200));
+        headLabel->setMaximumSize(QSize(254, 200));
+        headLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout->addWidget(headLabel, 1, 0, 1, 1);
 
 
         verticalLayout->addWidget(widget);
@@ -86,19 +94,19 @@ public:
         horizontalLayout->setSpacing(7);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(5, 5, 5, 5);
-        userLabel = new QLabel(LoginDialog);
-        userLabel->setObjectName("userLabel");
-        userLabel->setMinimumSize(QSize(30, 25));
-        userLabel->setMaximumSize(QSize(30, 25));
+        emailLabel = new QLabel(LoginDialog);
+        emailLabel->setObjectName("emailLabel");
+        emailLabel->setMinimumSize(QSize(30, 25));
+        emailLabel->setMaximumSize(QSize(30, 25));
 
-        horizontalLayout->addWidget(userLabel);
+        horizontalLayout->addWidget(emailLabel);
 
-        userEdit = new QLineEdit(LoginDialog);
-        userEdit->setObjectName("userEdit");
-        userEdit->setMinimumSize(QSize(0, 25));
-        userEdit->setMaximumSize(QSize(16777215, 25));
+        emailEdit = new QLineEdit(LoginDialog);
+        emailEdit->setObjectName("emailEdit");
+        emailEdit->setMinimumSize(QSize(0, 25));
+        emailEdit->setMaximumSize(QSize(16777215, 25));
 
-        horizontalLayout->addWidget(userEdit);
+        horizontalLayout->addWidget(emailEdit);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -200,8 +208,9 @@ public:
     void retranslateUi(QDialog *LoginDialog)
     {
         LoginDialog->setWindowTitle(QCoreApplication::translate("LoginDialog", "Dialog", nullptr));
-        label->setText(QString());
-        userLabel->setText(QCoreApplication::translate("LoginDialog", "\347\224\250\346\210\267:", nullptr));
+        errorLabel->setText(QCoreApplication::translate("LoginDialog", "error", nullptr));
+        headLabel->setText(QString());
+        emailLabel->setText(QCoreApplication::translate("LoginDialog", "\351\202\256\347\256\261:", nullptr));
         pwdLabel->setText(QCoreApplication::translate("LoginDialog", "\345\257\206\347\240\201:", nullptr));
         forgetLabel->setText(QCoreApplication::translate("LoginDialog", "\345\277\230\350\256\260\345\257\206\347\240\201", nullptr));
         loginBtn->setText(QCoreApplication::translate("LoginDialog", "\347\231\273\345\275\225", nullptr));

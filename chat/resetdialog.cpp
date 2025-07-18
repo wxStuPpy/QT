@@ -28,9 +28,9 @@ ResetDialog::ResetDialog(QWidget* parent) :
 		});
 
 	//连接确认和返回
-	connect(ui->sureBtn, &QPushButton::clicked, this, &ResetDialog::on_sure_btn_clicked);
-	connect(ui->returnBtn, &QPushButton::clicked, this, &ResetDialog::on_return_btn_clicked);
-	connect(ui->verifyBtn, &QPushButton::clicked, this, &ResetDialog::on_verify_btn_clicked);
+	connect(ui->sureBtn, &QPushButton::clicked, this, &ResetDialog::onSureBtnClicked);
+	connect(ui->returnBtn, &QPushButton::clicked, this, &ResetDialog::onReturnBtnClicked);
+	connect(ui->verifyBtn, &QPushButton::clicked, this, &ResetDialog::onVerifyBtnClicked);
 	//连接reset相关信号和注册处理回调
 	initHandlers();
 	connect(HttpMgr::getInstance().get(), &HttpMgr::resetModFinishSig, this,
@@ -42,13 +42,13 @@ ResetDialog::~ResetDialog()
 	delete ui;
 }
 
-void ResetDialog::on_return_btn_clicked()
+void ResetDialog::onReturnBtnClicked()
 {
 	qDebug() << "sure btn clicked ";
 	emit switchLogin();
 }
 
-void ResetDialog::on_verify_btn_clicked()
+void ResetDialog::onVerifyBtnClicked()
 {
 	qDebug() << "receive verify btn clicked ";
 	auto email = ui->emailEdit->text();
@@ -215,7 +215,7 @@ void ResetDialog::showTip(QString str, bool b_ok)
 	rePolish(ui->err_tip);
 }
 
-void ResetDialog::on_sure_btn_clicked()
+void ResetDialog::onSureBtnClicked()
 {
 	bool valid = checkUserValid();
 	if (!valid) {

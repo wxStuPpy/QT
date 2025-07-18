@@ -38,6 +38,8 @@ void MainWindow::slotSwitchLogin()
 
 	//创建和注册消息连接
 	connect(_loginDialog, &LoginDialog::switchRegister, this, &MainWindow::slotSwitchReg);
+	// 连接重置密码信号和槽函数
+	connect(_loginDialog, &LoginDialog::switchReset, this, &MainWindow::slotSwitchReset);
 }
 
 void MainWindow::slotSwitchReset()

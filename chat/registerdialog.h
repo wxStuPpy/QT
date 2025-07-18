@@ -24,10 +24,10 @@ private slots:
 	void regModFinishSlot(ReqID id, QString res, ErrorCodes ec);
 
 	// 确认按钮的点击事件
-	void on_confirmBtn_clicked();
+	void onConfirmBtnClicked();
 
-	void on_returnBtn_clicked();
-	void on_cancel_btn_clicked();
+	void onReturnBtnClicked();
+	void onCancelBtnClicked();
 
 private:
 	// 初始化处理网络请求的回调函数

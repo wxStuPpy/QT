@@ -87,9 +87,9 @@ RegisterDialog::RegisterDialog(QWidget* parent) :
 		});
 
 	//连接返回按钮的点击事件
-	connect(ui->returnBtn, &QPushButton::clicked, this, &RegisterDialog::on_returnBtn_clicked);
+	connect(ui->returnBtn, &QPushButton::clicked, this, &RegisterDialog::onReturnBtnClicked);
 	//连接取消按钮的点击事件
-	connect(ui->cancelBtn, &QPushButton::clicked, this, &RegisterDialog::on_cancel_btn_clicked);
+	connect(ui->cancelBtn, &QPushButton::clicked, this, &RegisterDialog::onCancelBtnClicked);
 }
 
 // 析构函数：销毁 UI 组件
@@ -288,7 +288,7 @@ bool RegisterDialog::checkVerifyValid()
 }
 
 // 确认按钮点击事件
-void RegisterDialog::on_confirmBtn_clicked()
+void RegisterDialog::onConfirmBtnClicked()
 {
 	bool valid = checkUserValid();
 	if (!valid) {
@@ -319,7 +319,7 @@ void RegisterDialog::on_confirmBtn_clicked()
 		json_obj, ReqID::ID_REG_USER, Modules::REGISTERMOD);
 }
 
-void RegisterDialog::on_returnBtn_clicked()
+void RegisterDialog::onReturnBtnClicked()
 {
 	// 停止定时器
 	_countDownTimer->stop();
@@ -327,7 +327,7 @@ void RegisterDialog::on_returnBtn_clicked()
 	emit sigSwitchLogin();
 }
 
-void RegisterDialog::on_cancel_btn_clicked()
+void RegisterDialog::onCancelBtnClicked()
 {
 	// 停止定时器
 	_countDownTimer->stop();
