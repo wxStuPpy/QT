@@ -33,7 +33,7 @@ ResetDialog::ResetDialog(QWidget* parent) :
 	connect(ui->verifyBtn, &QPushButton::clicked, this, &ResetDialog::onVerifyBtnClicked);
 	//连接reset相关信号和注册处理回调
 	initHandlers();
-	connect(HttpMgr::getInstance().get(), &HttpMgr::resetModFinishSig, this,
+	connect(HttpMgr::getInstance().get(), &HttpMgr::sigResetModFinish, this,
 		&ResetDialog::slotResetModFinish);
 }
 
@@ -207,7 +207,7 @@ void ResetDialog::showTip(QString str, bool b_ok)
 		ui->err_tip->setProperty("state", "normal");
 	}
 	else {
-		ui->err_tip->setProperty("state", "err");
+		ui->err_tip->setProperty("state", "error");
 	}
 
 	ui->err_tip->setText(str);

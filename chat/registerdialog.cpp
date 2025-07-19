@@ -18,7 +18,7 @@ RegisterDialog::RegisterDialog(QWidget* parent) :
 	// 刷新控件状态
 	rePolish(ui->errorLabel);
 	// 连接 HTTP 请求完成的信号与槽
-	connect(HttpMgr::getInstance().get(), &HttpMgr::regModFinishSig,
+	connect(HttpMgr::getInstance().get(), &HttpMgr::sigRegModFinish,
 		this, &RegisterDialog::regModFinishSlot);
 	// 初始化 HTTP 请求的回调处理
 	initHttpHandlers();

@@ -47,9 +47,10 @@ signals:
 	 * @note 无论请求成功或失败，此信号都会发出
 	 * @see postHttpReq
 	 */
-	void httpFinishSig(ReqID reqID, QString res, ErrorCodes ec, Modules mod);
-	void regModFinishSig(ReqID id, QString res, ErrorCodes ec);
-	void resetModFinishSig(ReqID id, QString res, ErrorCodes ec);
+	void sigHttpFinish(ReqID reqID, QString res, ErrorCodes ec, Modules mod);
+	void sigRegModFinish(ReqID id, QString res, ErrorCodes ec);
+	void sigResetModFinish(ReqID id, QString res, ErrorCodes ec);
+	void sigLoginModFinish(ReqID id, QString res, ErrorCodes ec);
 };
 
 #endif // HTTPMGR_H

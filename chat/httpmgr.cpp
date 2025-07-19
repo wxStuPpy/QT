@@ -5,13 +5,18 @@ void HttpMgr::httpFinishSlot(ReqID id, QString res, ErrorCodes ec, Modules mod)
 	if (mod == Modules::REGISTERMOD)
 	{
 		//发送信号通知指定模块http的响应结束了
-		emit regModFinishSig(id, res, ec);
+		emit sigRegModFinish(id, res, ec);
 	}
 
 	if (mod == Modules::RESETMOD)
 	{
 		//发送信号通知指定模块http的响应结束了
-		emit resetModFinishSig(id, res, ec);
+		emit sigResetModFinish(id, res, ec);
+	}
+
+	if (mod == Modules::LOGINMOD) {
+		//发送信号通知指定模块http的响应结束了
+		emit sigLoginModFinish(id, res, ec);
 	}
 }
 
@@ -22,7 +27,7 @@ HttpMgr::~HttpMgr()
 HttpMgr::HttpMgr()
 {
 	//如果发送的信号是注册模块的响应结束
-	connect(this, &HttpMgr::httpFinishSig, this, &HttpMgr::httpFinishSlot);
+	connect(this, &HttpMgr::sigHttpFinish, this, &HttpMgr::httpFinishSlot);
 }
 
 /*
@@ -61,7 +66,7 @@ void HttpMgr::postHttpReq(QUrl url, QJsonObject json, ReqID reqID, Modules mod)
 			qDebug() << " HTTP status code:"
 				<< reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();  // HTTP 状态码
 			// 发送错误信号（错误码为网络错误）
-			emit self->httpFinishSig(reqID, "", ErrorCodes::ERR_NETWORK, mod);
+			emit self->sigHttpFinish(reqID, "", ErrorCodes::ERR_NETWORK, mod);
 			// 释放响应对象（异步）
 			reply->deleteLater();
 			return;
@@ -69,7 +74,7 @@ void HttpMgr::postHttpReq(QUrl url, QJsonObject json, ReqID reqID, Modules mod)
 		// 请求成功，读取响应数据
 		QString res = reply->readAll();
 		// 发送成功信号（错误码为SUCCESS）
-		emit self->httpFinishSig(reqID, res, ErrorCodes::SUCCESS, mod);
+		emit self->sigHttpFinish(reqID, res, ErrorCodes::SUCCESS, mod);
 		// 释放响应对象（异步）
 		reply->deleteLater();
 		return;
