@@ -4,6 +4,7 @@
 #include <QPainterPath>
 #include <QDebug>
 #include "httpmgr.h"
+#include "tcpmgr.h"
 
 LoginDialog::LoginDialog(QWidget* parent) :
 	QDialog(parent),
@@ -18,6 +19,13 @@ LoginDialog::LoginDialog(QWidget* parent) :
 	initHeadImg(); // 初始化头像图片
 	initHttpHandlers();
 	connect(HttpMgr::getInstance().get(), &HttpMgr::sigLoginModFinish, this, &LoginDialog::slotLoginModFinish);
+
+	//连接tcp连接请求的信号和槽函数
+	connect(this, &LoginDialog::sigConnectTCP, TcpMgr::getInstance().get(), &TcpMgr::slotTcpConnect);
+	//连接tcp管理者发出的连接成功信号
+	connect(TcpMgr::getInstance().get(), &TcpMgr::sigConnectSuccess, this, &LoginDialog::slotTcpConnFinish);
+	//连接tcp管理者发出的登陆失败信号
+	connect(TcpMgr::getInstance().get(), &TcpMgr::sigLoginFailed, this, &LoginDialog::slotLoginFailed);
 }
 
 LoginDialog::~LoginDialog()
@@ -62,7 +70,7 @@ void LoginDialog::onLoginBtnClicked()
 	}
 	auto email = ui->emailEdit->text();
 	auto pwd = ui->pwdEdit->text();
-	enable(false);
+	enableBtn(false);
 	//发送http请求登录
 	QJsonObject json_obj;
 	json_obj["email"] = email;
@@ -95,6 +103,34 @@ void LoginDialog::slotLoginModFinish(ReqID id, QString res, ErrorCodes err)
 	_handlers[id](jsonDoc.object());
 
 	return;
+}
+
+void LoginDialog::slotTcpConnFinish(bool bsuccess)
+{
+	if (bsuccess) {
+		showTip(tr("connected chatserver successfully，Logining..."), true);
+		QJsonObject jsonObj;
+		jsonObj["uid"] = _uid;
+		jsonObj["token"] = _token;
+
+		QJsonDocument doc(jsonObj);
+		QByteArray jsonData = doc.toJson(QJsonDocument::Indented);
+
+		//发送tcp请求给chat server
+		emit TcpMgr::getInstance()->sigSendData(ReqID::ID_CHAT_LOGIN, jsonData);
+	}
+	else {
+		showTip(tr("error network"), false);
+		enableBtn(true);
+	}
+}
+
+void LoginDialog::slotLoginFailed(int err)
+{
+	QString result = QString("login failed, err is %1")
+		.arg(err);
+	showTip(result, false);
+	enableBtn(true);
 }
 
 void LoginDialog::initHeadImg()
@@ -163,7 +199,7 @@ void LoginDialog::showTip(QString str, bool b_ok)
 	rePolish(ui->errorLabel);
 }
 
-void LoginDialog::enable(bool b_enable)
+void LoginDialog::enableBtn(bool b_enable)
 {
 	if (b_enable) {
 		ui->emailEdit->setEnabled(true);

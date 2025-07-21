@@ -21,6 +21,8 @@ private slots:
 	void slotForgetPwd();
 	void onLoginBtnClicked();
 	void slotLoginModFinish(ReqID id, QString res, ErrorCodes err);
+	void slotTcpConnFinish(bool bsuccess);
+	void slotLoginFailed(int err);
 
 public:
 	explicit LoginDialog(QWidget* parent = nullptr);
@@ -36,8 +38,10 @@ private:
 	void AddTipErr(TipErr te, QString tips);
 	void DelTipErr(TipErr te);
 	void showTip(QString str, bool b_ok);
-	void enable(bool b_enable);
+	void enableBtn(bool b_enable);
 	void initHttpHandlers();
+	int _uid;
+	QString _token;
 };
 
 #endif // LOGINDIALOG_H
