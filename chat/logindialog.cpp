@@ -107,8 +107,9 @@ void LoginDialog::slotLoginModFinish(ReqID id, QString res, ErrorCodes err)
 
 void LoginDialog::slotTcpConnFinish(bool bsuccess)
 {
+	qDebug() << "tcp connect finish, bsuccess is " << bsuccess;
 	if (bsuccess) {
-		showTip(tr("connected chatserver successfully£¬Logining..."), true);
+		showTip(tr("connected chatServer successfully£¬Logining..."), true);
 		QJsonObject jsonObj;
 		jsonObj["uid"] = _uid;
 		jsonObj["token"] = _token;
@@ -233,6 +234,8 @@ void LoginDialog::initHttpHandlers()
 		server_info.Port = jsonObj["port"].toString();
 		server_info.Token = jsonObj["token"].toString();
 		server_info.Uid = jsonObj["uid"].toInt();
+		_uid = server_info.Uid;
+		_token = server_info.Token;
 		qDebug() << "email is " << email << " uid is " << server_info.Uid << " host is "
 			<< server_info.Host << " Port is " << server_info.Port << " Token is " << server_info.Token;
 		emit sigConnectTCP(server_info);

@@ -1,6 +1,7 @@
 #include "tcpmgr.h"
 #include <QAbstractSocket>
 #include <QJSonDOcument>
+#include "usermgr.h"
 
 TcpMgr::TcpMgr() :_host(""), _port(0), _b_recv_pending(false), _messageID(0), _messageLen(0)
 {
@@ -100,21 +101,9 @@ void TcpMgr::initHandlers()
 			emit sigLoginFailed(err);
 			return;
 		}
-
-		/*auto uid = jsonObj["uid"].toInt();
-		auto name = jsonObj["name"].toString();
-		auto nick = jsonObj["nick"].toString();
-		auto icon = jsonObj["icon"].toString();
-		auto sex = jsonObj["sex"].toInt();
-		auto desc = jsonObj["desc"].toString();
-		auto user_info = std::make_shared<UserInfo>(uid, name, nick, icon, sex, "", desc);
-
-		UserMgr::getInstance()->SetUserInfo(user_info);
-		UserMgr::getInstance()->SetToken(jsonObj["token"].toString());
-		if (jsonObj.contains("apply_list")) {
-			UserMgr::GetInstance()->AppendApplyList(jsonObj["apply_list"].toArray());
-		}*/
-
+		UserMgr::getInstance()->setName(jsonObj["name"].toString());
+		UserMgr::getInstance()->setUid(jsonObj["uid"].toInt());
+		UserMgr::getInstance()->setToken(jsonObj["token"].toString());
 		// 连接成功，发送信号通知界面
 		emit sigSwitchChatDialog();
 		});
@@ -138,7 +127,8 @@ void TcpMgr::slotTcpConnect(ServerInfo si) {
 	qDebug() << "Connecting to server...";
 	_host = si.Host;
 	_port = static_cast<uint16_t>(si.Port.toUInt());
-	_socket.connectToHost(si.Host, _port);
+	qDebug() << "server host is " << _host << " port is " << _port;
+	_socket.connectToHost(_host, _port);
 }
 
 void TcpMgr::slotSendData(ReqID ID, QString data)
@@ -146,8 +136,8 @@ void TcpMgr::slotSendData(ReqID ID, QString data)
 	uint16_t id = ID;
 	// 将字符串转换为UTF-8编码的字节数组
 	QByteArray dataBytes = data.toUtf8();
-	// 计算长度（使用网络字节序转换）
-	quint16 len = static_cast<quint16>(data.size());
+	// 计算实际字节长度（修正：使用字节数组的大小）
+	quint16 len = static_cast<quint16>(dataBytes.size());
 	// 创建一个QByteArray用于存储要发送的所有数据
 	QByteArray block;
 	QDataStream out(&block, QIODevice::WriteOnly);
@@ -159,4 +149,5 @@ void TcpMgr::slotSendData(ReqID ID, QString data)
 	block.append(dataBytes);
 	// 发送数据
 	_socket.write(block);
+	qDebug() << "send data, id is " << ID << " len is " << len << " data is " << data;
 }
