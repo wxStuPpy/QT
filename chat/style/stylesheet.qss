@@ -48,3 +48,20 @@ forgetLabel[state='normal'],#forgetLabel[state='selected']{
 #forgetLabel[state='hover'], #forgetLabel[state='selected_hover']{
     color: rgb(42, 112, 241);
 }
+
+#sideBar{
+  background-color:rgb(46,46,46);
+}
+
+#addBtn[state='normal']{
+    border-image: url(:/res/add_friend_normal.png);
+}
+
+#addBtn[state='hover']{
+    border-image: url(:/res/add_friend_hover.png);
+
+}
+
+#addBtn[state='press']{
+    border-image: url(:/res/add_friend_hover.png);
+}
