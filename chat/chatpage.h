@@ -4,7 +4,7 @@
 #include "ui_chatpage.h"
 
 namespace Ui {
-	ChatPage;
+	class ChatPage;
 }
 
 class ChatPage : public QWidget
@@ -14,6 +14,9 @@ class ChatPage : public QWidget
 public:
 	ChatPage(QWidget* parent = nullptr);
 	~ChatPage();
+
+protected:
+	virtual void paintEvent(QPaintEvent* event)override;
 
 private:
 	Ui::ChatPage* ui;
