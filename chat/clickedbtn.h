@@ -7,7 +7,7 @@ class ClickedBtn : public QPushButton
 {
 	Q_OBJECT
 public:
-	ClickedBtn(QWidget* parent = nullptr);
+	explicit ClickedBtn(QWidget* parent = nullptr);
 	~ClickedBtn();
 	void setState(QString normal, QString hover, QString press);
 protected:

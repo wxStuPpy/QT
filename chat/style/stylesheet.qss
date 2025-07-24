@@ -14,8 +14,6 @@ QDialog#LoginDialog,#RegisterDialog{
     color:red
 }
 
-
-
 #pwdVisible[state='unvisible']{
    border-image: url(:/res/unvisible.png);
 }
@@ -64,4 +62,73 @@ forgetLabel[state='normal'],#forgetLabel[state='selected']{
 
 #addBtn[state='press']{
     border-image: url(:/res/add_friend_hover.png);
+}
+
+#searchWid{
+     background-color:rgb(247,247,247);
+}
+#searchEdit {
+    border: 2px solid #f1f1f1;
+}
+
+#userWid{
+    background-color:rgb(0,0,0);
+}
+#userList {
+    background-color: rgb(247,247,248);
+    border: none;
+}
+#userList::item:selected {
+    background-color: #d3d7d4;
+    border: none;
+    outline: none;
+}
+#userList::item:hover {
+    background-color: rgb(206,207,208);
+    border: none;
+    outline: none;
+}
+#userList::focus {
+    border: none;
+    outline: none;
+}
+
+
+ChatUserWid {
+    background-color:rgb(247,247,247);
+    border: none;
+}
+#chatLabel{
+    color:rgb(153,153,153);
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+}
+#nameLabel{
+    color:rgb(0,0,0);
+    font-size: 14px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei";
+}
+#timeWid #time_lb{
+   color:rgb(140,140,140);
+   font-size: 12px;
+   font-family: "Microsoft YaHei";
+}
+QScrollBar:vertical {
+    background: transparent; /* 将轨道背景设置为透明 */
+    width: 8px; /* 滚动条宽度，根据需要调整 */
+    margin: 0px; /* 移除滚动条与滑块之间的间距 */
+}
+QScrollBar::handle:vertical {
+    background: rgb(173,170,169); /* 滑块颜色 */
+    min-height: 10px; /* 滑块最小高度，根据需要调整 */
+    border-radius: 4px; /* 滑块边缘圆角，调整以形成椭圆形状 */
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px; /* 移除上下按钮 */
+    border: none; /* 移除边框 */
+    background: transparent; /* 背景透明 */
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none; /* 页面滚动部分背景透明 */
 }

@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_chatdialog.h"
+#include "global.h"
 
 class ChatDialog : public QMainWindow
 {
@@ -10,7 +11,11 @@ class ChatDialog : public QMainWindow
 public:
 	ChatDialog(QWidget* parent = nullptr);
 	~ChatDialog();
-
+	void addChatUserList();
 private:
-	Ui::ChatDialogClass* ui;
+	void showSearch(bool bsearch);
+	Ui::ChatDialog* ui;
+	ChatUIMode _mode;
+	ChatUIMode _state;
+	bool _b_loading;
 };
