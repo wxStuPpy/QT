@@ -3,10 +3,12 @@
 #include <QAction>
 #include <QRandomGenerator>
 #include "chatuserwid.h"
+#include "chatuserlist.h"
+#include "loadingdialog.h"
 
 ChatDialog::ChatDialog(QWidget* parent)
 	: QMainWindow(parent)
-	, ui(new Ui::ChatDialog), _mode(ChatUIMode::ChatMode),
+	, ui(new Ui::ChatDialog), _mode(ChatUIMode::ChatMode), _b_loading(false),
 	_state(ChatUIMode::ChatMode)
 {
 	ui->setupUi(this);
@@ -44,6 +46,7 @@ ChatDialog::ChatDialog(QWidget* parent)
 		});
 
 	showSearch(false);
+	connect(ui->userList, &ChatUserList::sigLoadingChatUser, this, &ChatDialog::slotLoadingChatUser);
 	addChatUserList();
 }
 
@@ -116,4 +119,19 @@ void ChatDialog::addChatUserList()
 		ui->userList->addItem(item);
 		ui->userList->setItemWidget(item, chat_user_wid);
 	}
+}
+
+void ChatDialog::slotLoadingChatUser() {
+	if (_b_loading) {
+		return;
+	}
+	_b_loading = true;
+	LoadingDialog* loadingDialog = new LoadingDialog(this);
+	loadingDialog->setModal(true);
+	loadingDialog->show();
+	qDebug() << "add new data to list.....";
+	addChatUserList();
+	// 加载完成后关闭对话框
+	loadingDialog->deleteLater();
+	_b_loading = false;
 }

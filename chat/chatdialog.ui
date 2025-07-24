@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ChatDialogClass</class>
- <widget class="QMainWindow" name="ChatDialogClass">
+ <class>ChatDialog</class>
+ <widget class="QMainWindow" name="ChatDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -244,7 +244,7 @@
         <widget class="ChatUserList" name="searchList"/>
        </item>
        <item>
-        <widget class="QListWidget" name="userList"/>
+        <widget class="ChatUserList" name="userList"/>
        </item>
        <item>
         <widget class="QListWidget" name="conUserList"/>
@@ -563,6 +563,15 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="chatPage"/>
+      <widget class="QWidget" name="friendApplyPage"/>
      </widget>
     </item>
    </layout>

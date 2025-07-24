@@ -18,4 +18,6 @@ private:
 	ChatUIMode _mode;
 	ChatUIMode _state;
 	bool _b_loading;
+public slots:
+	void slotLoadingChatUser();
 };
