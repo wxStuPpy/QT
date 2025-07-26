@@ -73,11 +73,13 @@ public:
         verticalLayout->setContentsMargins(1, 1, 1, 1);
         nameLabel = new QLabel(userInfoWid);
         nameLabel->setObjectName("nameLabel");
+        nameLabel->setMaximumSize(QSize(130, 16777215));
 
         verticalLayout->addWidget(nameLabel);
 
         chatLabel = new QLabel(userInfoWid);
         chatLabel->setObjectName("chatLabel");
+        chatLabel->setMaximumSize(QSize(130, 16777215));
 
         verticalLayout->addWidget(chatLabel);
 

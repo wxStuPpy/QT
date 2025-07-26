@@ -110,6 +110,12 @@
       </property>
       <item>
        <widget class="QLabel" name="nameLabel">
+        <property name="maximumSize">
+         <size>
+          <width>130</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>Kobe</string>
         </property>
@@ -117,6 +123,12 @@
       </item>
       <item>
        <widget class="QLabel" name="chatLabel">
+        <property name="maximumSize">
+         <size>
+          <width>130</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>what can i say</string>
         </property>

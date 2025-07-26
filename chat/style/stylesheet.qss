@@ -227,3 +227,15 @@ LoadingDialog{
 #fileLabel[state='press']{
     border-image: url(:/res/filedir_press.png);
 }
+
+#chatDataList{
+     background: #f0f0f0;
+}
+
+#chat_bg{
+    background: #f0f0f0;
+}
+
+#chat_area{
+    border: none;
+}

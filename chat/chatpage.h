@@ -14,7 +14,8 @@ class ChatPage : public QWidget
 public:
 	ChatPage(QWidget* parent = nullptr);
 	~ChatPage();
-
+public slots:
+	void slotOnSendBtnClicked();
 protected:
 	virtual void paintEvent(QPaintEvent* event)override;
 
