@@ -98,7 +98,7 @@ ChatUserWid {
     background-color:rgb(247,247,247);
     border: none;
 }
-#chatLabel{
+#chatWid{
     color:rgb(153,153,153);
     font-size: 12px;
     font-family: "Microsoft YaHei";
@@ -246,50 +246,97 @@ LoadingDialog{
     font-family: "Microsoft YaHei";
 }
 
-#chatLabel[state='normal']{
+#chatWid[state='normal']{
     border-image: url(:/res/chat_icon.png);
 }
 
-#chatLabel[state='hover']{
+#chatWid[state='hover']{
     border-image: url(:/res/chat_icon_hover.png);
 }
 
-#chatLabel[state='pressed']{
+#chatWid[state='pressed']{
     border-image: url(:/res/chat_icon_press.png);
 }
 
-#chatLabel[state='selected_normal']{
+#chatWid[state='selected_normal']{
     border-image: url(:/res/chat_icon_press.png);
 }
 
-#chatLabel[state='selected_hover']{
+#chatWid[state='selected_hover']{
     border-image: url(:/res/chat_icon_press.png);
 }
 
-#chatLabel[state='selected_pressed']{
+#chatWid[state='selected_pressed']{
     border-image: url(:/res/chat_icon_press.png);
 }
 
-#contactLabel[state='normal']{
+#contactWid[state='normal']{
     border-image: url(:/res/contact_list.png);
 }
 
-#contactLabel[state='hover']{
+#contactWid[state='hover']{
     border-image: url(:/res/contact_list_hover.png);
 }
 
-#contactLabel[state='pressed']{
+#contactWid[state='pressed']{
     border-image: url(:/res/contact_list_press.png);
 }
 
-#contactLabel[state='selected_normal']{
+#contactWid[state='selected_normal']{
     border-image: url(:/res/contact_list_press.png);
 }
 
-#contactLabel[state='selected_hover']{
+#contactWid[state='selected_hover']{
     border-image: url(:/res/contact_list_press.png);
 }
 
-#contactLabel[state='selected_pressed']{
+#contactWid[state='selected_pressed']{
     border-image: url(:/res/contact_list_press.png);
+}
+
+
+#searchEdit {
+    border: 2px solid #f1f1f1;
+}
+
+/* ËÑË÷¿òÁÐ±í*/
+#searchList {
+    background-color: rgb(247,247,248);
+    border: none;
+}
+
+#searchList::item:selected {
+    background-color: #d3d7d4;
+    border: none;
+    outline: none;
+}
+
+#searchList::item:hover {
+    background-color: rgb(206,207,208);
+    border: none;
+    outline: none;
+}
+
+#searchList::focus {
+    border: none;
+    outline: none;
+}
+
+#invalid_item {
+    background-color: #eaeaea;
+    border: none;
+}
+
+#add_tip {
+    border-image: url(:/res/addtip.png);
+}
+
+#right_tip{
+ border-image: url(:/res/right_tip.png);
+}
+
+#message_tip{
+  text-align: center;
+  font-family: "Microsoft YaHei";
+  font-size: 12pt;
 }

@@ -2,6 +2,7 @@
 #include "singleton.h"
 #include <QTcpSocket>
 #include "global.h"
+#include "userdata.h"
 
 class TcpMgr :public QObject, public Singleton<TcpMgr>
 {
@@ -30,4 +31,5 @@ signals:
 	void sigSendData(ReqID ID, QString data);
 	void sigSwitchChatDialog();
 	void sigLoginFailed(int);
+	void sigUserSearch(std::shared_ptr<SearchInfo> si);
 };

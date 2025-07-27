@@ -23,6 +23,8 @@
 #include <chatuserlist.h>
 #include <clickedbtn.h>
 #include <customizeedit.h>
+#include <searchlist.h>
+#include <statewidget.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -36,8 +38,8 @@ public:
     QWidget *widget;
     QVBoxLayout *verticalLayout_3;
     QLabel *headLabel;
-    QLabel *chatLabel;
-    QLabel *contactLabel;
+    StateWidget *chatWid;
+    StateWidget *contactWid;
     QSpacerItem *verticalSpacer;
     QWidget *userWid;
     QVBoxLayout *verticalLayout_2;
@@ -46,7 +48,7 @@ public:
     CustomizeEdit *searchEdit;
     QSpacerItem *horizontalSpacer;
     ClickedBtn *addBtn;
-    ChatUserList *searchList;
+    SearchList *searchList;
     ChatUserList *userList;
     QListWidget *conUserList;
     QStackedWidget *stackedWidget;
@@ -93,19 +95,19 @@ public:
 
         verticalLayout_3->addWidget(headLabel);
 
-        chatLabel = new QLabel(widget);
-        chatLabel->setObjectName("chatLabel");
-        chatLabel->setMinimumSize(QSize(30, 30));
-        chatLabel->setMaximumSize(QSize(30, 30));
+        chatWid = new StateWidget(widget);
+        chatWid->setObjectName("chatWid");
+        chatWid->setMinimumSize(QSize(30, 30));
+        chatWid->setMaximumSize(QSize(30, 30));
 
-        verticalLayout_3->addWidget(chatLabel);
+        verticalLayout_3->addWidget(chatWid);
 
-        contactLabel = new QLabel(widget);
-        contactLabel->setObjectName("contactLabel");
-        contactLabel->setMinimumSize(QSize(30, 30));
-        contactLabel->setMaximumSize(QSize(30, 30));
+        contactWid = new StateWidget(widget);
+        contactWid->setObjectName("contactWid");
+        contactWid->setMinimumSize(QSize(30, 30));
+        contactWid->setMaximumSize(QSize(30, 30));
 
-        verticalLayout_3->addWidget(contactLabel);
+        verticalLayout_3->addWidget(contactWid);
 
 
         verticalLayout->addWidget(widget);
@@ -152,7 +154,7 @@ public:
 
         verticalLayout_2->addWidget(searchWid);
 
-        searchList = new ChatUserList(userWid);
+        searchList = new SearchList(userWid);
         searchList->setObjectName("searchList");
 
         verticalLayout_2->addWidget(searchList);
@@ -195,8 +197,6 @@ public:
     {
         ChatDialog->setWindowTitle(QCoreApplication::translate("ChatDialog", "ChatDialog", nullptr));
         headLabel->setText(QString());
-        chatLabel->setText(QString());
-        contactLabel->setText(QString());
         addBtn->setText(QString());
     } // retranslateUi
 

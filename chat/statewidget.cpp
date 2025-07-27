@@ -71,11 +71,13 @@ void StateWidget::addRedPoint()
 
 void StateWidget::showRedPoint(bool show)
 {
+	Q_UNUSED(show);
 	_red_point->setVisible(true);
 }
 
 void StateWidget::paintEvent(QPaintEvent* event)
 {
+	Q_UNUSED(event);
 	QStyleOption opt;
 	opt.initFrom(this);
 	QPainter p(this);

@@ -55,17 +55,20 @@ ChatDialog::ChatDialog(QWidget* parent)
 	ui->headLabel->setPixmap(scaledPixmap); // 将缩放后的图片设置到QLabel上
 	ui->headLabel->setScaledContents(true); // 设置QLabel自动缩放图片内容以适应大小
 
-	/*ui->chatLabel->setProperty("state", "normal");
+	ui->chatWid->setProperty("state", "normal");
 
-	ui->chatLabel->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
+	ui->chatWid->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
 
-	ui->contactLabel->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
+	ui->contactWid->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
 
-	addLBGroup(ui->chatLabel);
-	addLBGroup(ui->contactLabel);
+	addLBGroup(ui->chatWid);
+	addLBGroup(ui->contactWid);
 
-	connect(ui->chatLabel, &stateWidget::clicked, this, &ChatDialog::slot_chat);
-	connect(ui->contactLabel, &ssateWidget::clicked, this, &ChatDialog::slot_side_contact);*/
+	connect(ui->chatWid, &StateWidget::clicked, this, &ChatDialog::slotSideChat);
+	connect(ui->contactWid, &StateWidget::clicked, this, &ChatDialog::slotSideContact);
+
+	//链接搜索框输入变化
+	connect(ui->searchEdit, &QLineEdit::textChanged, this, &ChatDialog::slotTextChanged);
 }
 
 ChatDialog::~ChatDialog()
@@ -92,6 +95,49 @@ void ChatDialog::showSearch(bool bsearch = false)
 		ui->searchList->hide();
 		ui->conUserList->show();
 		_mode = ChatUIMode::ContactMode;
+	}
+}
+
+void ChatDialog::addLBGroup(StateWidget* lb)
+{
+	_lb_list.push_back(lb);
+}
+
+void ChatDialog::clearLabelState(StateWidget* lb)
+{
+	for (auto& ele : _lb_list) {
+		if (ele == lb) {
+			continue;
+		}
+
+		ele->clearState();
+	}
+}
+
+void ChatDialog::slotSideChat()
+{
+	qDebug() << "receive side chat clicked";
+	clearLabelState(ui->chatWid);
+	ui->stackedWidget->setCurrentWidget(ui->chatPage);
+	_state = ChatUIMode::ChatMode;
+	showSearch(false);
+}
+
+void ChatDialog::slotSideContact()
+{
+	qDebug() << "receive side contact clicked";
+	clearLabelState(ui->contactWid);
+	//设置
+	ui->stackedWidget->setCurrentWidget(ui->friendApplyPage);
+	_state = ChatUIMode::ContactMode;
+	showSearch(false);
+}
+
+void ChatDialog::slotTextChanged(const QString& str)
+{
+	//qDebug()<< "receive slot text changed str is " << str;
+	if (!str.isEmpty()) {
+		showSearch(true);
 	}
 }
 
