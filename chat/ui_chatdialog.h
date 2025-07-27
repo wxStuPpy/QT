@@ -11,10 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListWidget>
-#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -31,7 +31,6 @@ QT_BEGIN_NAMESPACE
 class Ui_ChatDialog
 {
 public:
-    QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QWidget *sideBar;
     QVBoxLayout *verticalLayout;
@@ -48,26 +47,24 @@ public:
     CustomizeEdit *searchEdit;
     QSpacerItem *horizontalSpacer;
     ClickedBtn *addBtn;
-    SearchList *searchList;
     ChatUserList *userList;
+    SearchList *searchList;
     QListWidget *conUserList;
     QStackedWidget *stackedWidget;
     ChatPage *chatPage;
     QWidget *friendApplyPage;
 
-    void setupUi(QMainWindow *ChatDialog)
+    void setupUi(QDialog *ChatDialog)
     {
         if (ChatDialog->objectName().isEmpty())
             ChatDialog->setObjectName("ChatDialog");
-        ChatDialog->resize(649, 520);
-        centralWidget = new QWidget(ChatDialog);
-        centralWidget->setObjectName("centralWidget");
-        horizontalLayout = new QHBoxLayout(centralWidget);
+        ChatDialog->resize(712, 519);
+        horizontalLayout = new QHBoxLayout(ChatDialog);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        sideBar = new QWidget(centralWidget);
+        sideBar = new QWidget(ChatDialog);
         sideBar->setObjectName("sideBar");
         QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
@@ -83,6 +80,7 @@ public:
         verticalLayout->setContentsMargins(10, 30, 0, 0);
         widget = new QWidget(sideBar);
         widget->setObjectName("widget");
+        widget->setMinimumSize(QSize(0, 0));
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(30);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -119,7 +117,7 @@ public:
 
         horizontalLayout->addWidget(sideBar);
 
-        userWid = new QWidget(centralWidget);
+        userWid = new QWidget(ChatDialog);
         userWid->setObjectName("userWid");
         userWid->setMaximumSize(QSize(250, 16777215));
         verticalLayout_2 = new QVBoxLayout(userWid);
@@ -129,6 +127,11 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         searchWid = new QWidget(userWid);
         searchWid->setObjectName("searchWid");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(searchWid->sizePolicy().hasHeightForWidth());
+        searchWid->setSizePolicy(sizePolicy1);
         searchWid->setMinimumSize(QSize(0, 60));
         searchWid->setMaximumSize(QSize(16777215, 60));
         horizontalLayout_2 = new QHBoxLayout(searchWid);
@@ -154,15 +157,15 @@ public:
 
         verticalLayout_2->addWidget(searchWid);
 
-        searchList = new SearchList(userWid);
-        searchList->setObjectName("searchList");
-
-        verticalLayout_2->addWidget(searchList);
-
         userList = new ChatUserList(userWid);
         userList->setObjectName("userList");
 
         verticalLayout_2->addWidget(userList);
+
+        searchList = new SearchList(userWid);
+        searchList->setObjectName("searchList");
+
+        verticalLayout_2->addWidget(searchList);
 
         conUserList = new QListWidget(userWid);
         conUserList->setObjectName("conUserList");
@@ -172,7 +175,7 @@ public:
 
         horizontalLayout->addWidget(userWid);
 
-        stackedWidget = new QStackedWidget(centralWidget);
+        stackedWidget = new QStackedWidget(ChatDialog);
         stackedWidget->setObjectName("stackedWidget");
         chatPage = new ChatPage();
         chatPage->setObjectName("chatPage");
@@ -183,17 +186,13 @@ public:
 
         horizontalLayout->addWidget(stackedWidget);
 
-        ChatDialog->setCentralWidget(centralWidget);
 
         retranslateUi(ChatDialog);
-
-        stackedWidget->setCurrentIndex(0);
-
 
         QMetaObject::connectSlotsByName(ChatDialog);
     } // setupUi
 
-    void retranslateUi(QMainWindow *ChatDialog)
+    void retranslateUi(QDialog *ChatDialog)
     {
         ChatDialog->setWindowTitle(QCoreApplication::translate("ChatDialog", "ChatDialog", nullptr));
         headLabel->setText(QString());

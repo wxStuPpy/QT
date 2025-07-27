@@ -1,11 +1,11 @@
 #pragma once
 
-#include <QMainWindow>
+#include <QDialog>
 #include "ui_chatdialog.h"
 #include "global.h"
 #include "statewidget.h"
 
-class ChatDialog : public QMainWindow
+class ChatDialog : public QDialog
 {
 	Q_OBJECT
 
@@ -13,6 +13,8 @@ public:
 	ChatDialog(QWidget* parent = nullptr);
 	~ChatDialog();
 	void addChatUserList();
+protected:
+	bool eventFilter(QObject* watched, QEvent* event)override;
 private:
 	void showSearch(bool bsearch);
 	void addLBGroup(StateWidget* s);

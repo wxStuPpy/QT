@@ -5,9 +5,10 @@
 #include "chatuserwid.h"
 #include "chatuserlist.h"
 #include "loadingdialog.h"
+#include <QMouseEvent>
 
 ChatDialog::ChatDialog(QWidget* parent)
-	: QMainWindow(parent)
+	: QDialog(parent)
 	, ui(new Ui::ChatDialog), _mode(ChatUIMode::ChatMode), _b_loading(false),
 	_state(ChatUIMode::ChatMode)
 {
@@ -69,11 +70,21 @@ ChatDialog::ChatDialog(QWidget* parent)
 
 	//链接搜索框输入变化
 	connect(ui->searchEdit, &QLineEdit::textChanged, this, &ChatDialog::slotTextChanged);
+
+	this->installEventFilter(this);//安装事件过滤器
 }
 
 ChatDialog::~ChatDialog()
 {
 	delete ui;
+}
+
+bool ChatDialog::eventFilter(QObject* watched, QEvent* event) {
+	if (event->type() == QEvent::MouseButtonPress) {
+		QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
+		//handleGlobalMousePress(mouseEvent);
+	}
+	return QDialog::eventFilter(watched, event);
 }
 
 void ChatDialog::showSearch(bool bsearch = false)
