@@ -15,6 +15,7 @@ public:
 	void addChatUserList();
 protected:
 	bool eventFilter(QObject* watched, QEvent* event)override;
+	void handleGlobalMousePress(QMouseEvent* event);
 private:
 	void showSearch(bool bsearch);
 	void addLBGroup(StateWidget* s);
