@@ -44,10 +44,28 @@ ChatDialog::ChatDialog(QWidget* parent)
 		//清除按钮被按下则不显示搜索框
 		showSearch(false);
 		});
-
+	ui->searchEdit->setMaxLength(15);
 	showSearch(false);
 	connect(ui->userList, &ChatUserList::sigLoadingChatUser, this, &ChatDialog::slotLoadingChatUser);
 	addChatUserList();
+
+	QPixmap pixmap(":/res/head_1.jpg");
+	ui->headLabel->setPixmap(pixmap); // 将图片设置到QLabel上
+	QPixmap scaledPixmap = pixmap.scaled(ui->headLabel->size(), Qt::KeepAspectRatio); // 将图片缩放到label的大小
+	ui->headLabel->setPixmap(scaledPixmap); // 将缩放后的图片设置到QLabel上
+	ui->headLabel->setScaledContents(true); // 设置QLabel自动缩放图片内容以适应大小
+
+	/*ui->chatLabel->setProperty("state", "normal");
+
+	ui->chatLabel->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
+
+	ui->contactLabel->setState("normal", "hover", "pressed", "selected_normal", "selected_hover", "selected_pressed");
+
+	addLBGroup(ui->chatLabel);
+	addLBGroup(ui->contactLabel);
+
+	connect(ui->chatLabel, &stateWidget::clicked, this, &ChatDialog::slot_chat);
+	connect(ui->contactLabel, &ssateWidget::clicked, this, &ChatDialog::slot_side_contact);*/
 }
 
 ChatDialog::~ChatDialog()

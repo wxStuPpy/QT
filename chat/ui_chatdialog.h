@@ -35,9 +35,9 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *widget;
     QVBoxLayout *verticalLayout_3;
+    QLabel *headLabel;
     QLabel *chatLabel;
     QLabel *contactLabel;
-    QLabel *headLabel;
     QSpacerItem *verticalSpacer;
     QWidget *userWid;
     QVBoxLayout *verticalLayout_2;
@@ -86,6 +86,13 @@ public:
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        headLabel = new QLabel(widget);
+        headLabel->setObjectName("headLabel");
+        headLabel->setMinimumSize(QSize(30, 30));
+        headLabel->setMaximumSize(QSize(30, 30));
+
+        verticalLayout_3->addWidget(headLabel);
+
         chatLabel = new QLabel(widget);
         chatLabel->setObjectName("chatLabel");
         chatLabel->setMinimumSize(QSize(30, 30));
@@ -99,13 +106,6 @@ public:
         contactLabel->setMaximumSize(QSize(30, 30));
 
         verticalLayout_3->addWidget(contactLabel);
-
-        headLabel = new QLabel(widget);
-        headLabel->setObjectName("headLabel");
-        headLabel->setMinimumSize(QSize(30, 30));
-        headLabel->setMaximumSize(QSize(30, 30));
-
-        verticalLayout_3->addWidget(headLabel);
 
 
         verticalLayout->addWidget(widget);
@@ -194,9 +194,9 @@ public:
     void retranslateUi(QMainWindow *ChatDialog)
     {
         ChatDialog->setWindowTitle(QCoreApplication::translate("ChatDialog", "ChatDialog", nullptr));
+        headLabel->setText(QString());
         chatLabel->setText(QString());
         contactLabel->setText(QString());
-        headLabel->setText(QString());
         addBtn->setText(QString());
     } // retranslateUi
 
