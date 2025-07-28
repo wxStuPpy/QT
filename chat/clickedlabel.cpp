@@ -44,7 +44,7 @@ void ClickedLabel::mouseReleaseEvent(QMouseEvent* event)
 			rePolish(this);
 			update();
 		}
-		emit clicked();
+		emit clicked(this->text(), _curState);
 		return;
 	}
 	// 调用基类的mousePressEvent以保证正常的事件处理
@@ -99,7 +99,29 @@ void ClickedLabel::setState(QString normal, QString hover, QString press, QStrin
 	rePolish(this);
 }
 
+bool ClickedLabel::setCurState(ClickLbState state)
+{
+	_curState = state;
+	if (_curState == ClickLbState::Normal) {
+		setProperty("state", _normal);
+		rePolish(this);
+	}
+	else if (_curState == ClickLbState::Selected) {
+		setProperty("state", _selected);
+		rePolish(this);
+	}
+
+	return true;
+}
+
 ClickLbState ClickedLabel::getCurState()
 {
 	return _curState;
+}
+
+void ClickedLabel::resetNormalState()
+{
+	_curState = ClickLbState::Normal;
+	setProperty("state", _normal);
+	rePolish(this);
 }

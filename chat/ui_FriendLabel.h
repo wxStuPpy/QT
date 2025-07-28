@@ -11,19 +11,55 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
+#include <clickedlabel.h>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_FriendLabel
 {
 public:
+    QHBoxLayout *horizontalLayout;
+    QLabel *tipLabel;
+    QWidget *closeWid;
+    QHBoxLayout *horizontalLayout_2;
+    ClickedLabel *closeLabel;
 
     void setupUi(QWidget *FriendLabel)
     {
         if (FriendLabel->objectName().isEmpty())
             FriendLabel->setObjectName("FriendLabel");
-        FriendLabel->resize(600, 400);
+        FriendLabel->resize(600, 43);
+        horizontalLayout = new QHBoxLayout(FriendLabel);
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        tipLabel = new QLabel(FriendLabel);
+        tipLabel->setObjectName("tipLabel");
+
+        horizontalLayout->addWidget(tipLabel);
+
+        closeWid = new QWidget(FriendLabel);
+        closeWid->setObjectName("closeWid");
+        closeWid->setMinimumSize(QSize(25, 25));
+        closeWid->setMaximumSize(QSize(25, 25));
+        horizontalLayout_2 = new QHBoxLayout(closeWid);
+        horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        closeLabel = new ClickedLabel(closeWid);
+        closeLabel->setObjectName("closeLabel");
+        closeLabel->setStyleSheet(QString::fromUtf8(""));
+
+        horizontalLayout_2->addWidget(closeLabel);
+
+
+        horizontalLayout->addWidget(closeWid);
+
 
         retranslateUi(FriendLabel);
 
@@ -33,6 +69,8 @@ public:
     void retranslateUi(QWidget *FriendLabel)
     {
         FriendLabel->setWindowTitle(QCoreApplication::translate("FriendLabel", "FriendLabel", nullptr));
+        tipLabel->setText(QCoreApplication::translate("FriendLabel", "TextLabel", nullptr));
+        closeLabel->setText(QString());
     } // retranslateUi
 
 };

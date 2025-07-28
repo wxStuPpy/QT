@@ -29,6 +29,7 @@ enum ReqID {
 	ID_LOGIN_USER = 1004,//登录用户
 	ID_CHAT_LOGIN = 1005,//聊天登录
 	ID_CHAT_LOGIN_RSP = 1006,//聊天登录响应
+	ID_ADD_FRIEND_REQ = 1007,//添加好友请求
 };
 
 enum Modules {
@@ -98,6 +99,13 @@ struct MsgInfo {
 	QString content;//表示文件和图像的url,文本信息
 	QPixmap pixmap;//文件和图片的缩略图
 };
+
+//申请好友标签输入框最低长度
+const int MIN_APPLY_LABEL_ED_LEN = 40;
+
+const QString add_prefix = "添加标签 ";
+
+const int  tip_offset = 5;
 
 extern QString gateURLPrefix;
 

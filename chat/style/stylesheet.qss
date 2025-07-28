@@ -373,3 +373,13 @@ LoadingDialog{
    font-family: "Microsoft YaHei"; /* …Ë÷√◊÷ÃÂ */
    border-radius: 20px; /* …Ë÷√‘≤Ω« */
 }
+
+#FriendLabel{
+    background: #daf637;
+    color: #48bf56;
+    border-radius: 10px;
+}
+
+#closeLabel{
+    border-image: url(:/res/tipclose.png);
+}

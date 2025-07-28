@@ -10,7 +10,17 @@ class FriendLabel : public QFrame
 public:
 	FriendLabel(QWidget* parent = nullptr);
 	~FriendLabel();
-
+	void setText(QString& text);
+	int width();
+	int height();
+	QString text();
 private:
-	Ui::FriendLabel ui;
+	Ui::FriendLabel* ui;
+	QString _text;
+	int _width;
+	int _height;
+public slots:
+	void slotClose();
+signals:
+	void sigClose(QString);
 };
