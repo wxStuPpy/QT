@@ -1,7 +1,8 @@
 #include "FindSuccessDialog.h"
 #include "ui_FindSuccessDialog.h"
-#include <QDir>#include "FindSuccessDialog.h"
-#include "ui_FindSuccessDialog.h"
+#include <QDir>
+#include "ApplyFriend.h"
+
 // 移除对 <QDir> 和 <QCoreApplication> 的引用，因为不再需要它们来构建文件系统路径
 // #include <QDir>
 // #include <QCoreApplication>
@@ -22,6 +23,7 @@ FindSuccessDialog::FindSuccessDialog(QWidget* parent) :
 	ui->headLabel->setPixmap(head_pix);
 	ui->addFriendBtn->setState("normal", "hover", "press");
 	this->setModal(true);
+	connect(ui->addFriendBtn, &QPushButton::clicked, this, &FindSuccessDialog::onAddFriendBtnClicked);
 }
 
 FindSuccessDialog::~FindSuccessDialog()
@@ -36,4 +38,10 @@ void FindSuccessDialog::SetSearchInfo(std::shared_ptr<SearchInfo> si)
 }
 
 void FindSuccessDialog::onAddFriendBtnClicked() {
+	this->hide();
+	//弹出加好友界面
+	auto applyFriend = new ApplyFriend(_parent);
+	applyFriend->SetSearchInfo(_si);
+	applyFriend->setModal(true);
+	applyFriend->show();
 }

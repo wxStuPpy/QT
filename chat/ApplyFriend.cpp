@@ -6,7 +6,7 @@
 #include "tcpmgr.h"
 
 ApplyFriend::ApplyFriend(QWidget* parent) :
-	QDialog(parent),
+	QDialog(),
 	ui(new Ui::ApplyFriend), _label_point(2, 6)
 {
 	ui->setupUi(this);
@@ -14,9 +14,9 @@ ApplyFriend::ApplyFriend(QWidget* parent) :
 	setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
 	this->setObjectName("ApplyFriend");
 	this->setModal(true);
-	ui->nameEdit->setPlaceholderText(tr("恋恋风辰"));
-	ui->labelEdit->setPlaceholderText("搜索、添加标签");
-	ui->backEdit->setPlaceholderText("燃烧的胸毛");
+	ui->nameEdit->setPlaceholderText(tr("llfc"));
+	ui->labelEdit->setPlaceholderText("search add tag");
+	ui->backEdit->setPlaceholderText("bill");
 
 	ui->labelEdit->setMaxLength(21);
 	ui->labelEdit->move(2, 2);
@@ -26,9 +26,20 @@ ApplyFriend::ApplyFriend(QWidget* parent) :
 
 	_tip_cur_point = QPoint(5, 5);
 
-	_tip_data = { "同学","家人","菜鸟教程","C++ Primer","Rust 程序设计",
-							 "父与子学Python","nodejs开发指南","go 语言开发指南",
-								"游戏伙伴","金融投资","微信读书","拼多多拼友" };
+	_tip_data = {
+	"Classmate",        // 同学
+	"Family",           // 家人
+	"Rookie Tutorial",  // 菜鸟教程
+	"C++ Primer",       // C++ Primer（书名通常保留原名）
+	"Rust Programming", // Rust 程序设计
+	"Parent and Child Learn Python", // 父与子学Python
+	"Node.js Development Guide",     // nodejs开发指南
+	"Go Language Development Guide", // go 语言开发指南
+	"Game Partner",     // 游戏伙伴
+	"Financial Investment", // 金融投资
+	"WeChat Reading",   // 微信读书
+	"Pinduoduo Shopping Mate" // 拼多多拼友
+	};
 
 	connect(ui->moreLabel, &ClickedOnceLabel::clicked, this, &ApplyFriend::showMoreLabel);
 	InitTipLbs();

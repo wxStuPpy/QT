@@ -153,6 +153,7 @@ public:
         labelEdit = new QLineEdit(gridWid);
         labelEdit->setObjectName("labelEdit");
         labelEdit->setGeometry(QRect(2, 2, 108, 35));
+        labelEdit->setMinimumSize(QSize(108, 0));
         labelEdit->setMaximumSize(QSize(16777215, 35));
 
         verticalLayout_4->addWidget(gridWid);
