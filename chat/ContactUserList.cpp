@@ -129,26 +129,30 @@ void ContactUserList::slotItemClicked(QListWidgetItem* item)
 		qDebug() << "slot item clicked widget is nullptr";
 		return;
 	}
-
 	// 对自定义widget进行操作， 将item 转化为基类ListItemBase
 	ListItemBase* customItem = qobject_cast<ListItemBase*>(widget);
 	if (!customItem) {
 		qDebug() << "slot item clicked widget is nullptr";
 		return;
 	}
-
 	auto itemType = customItem->getItemType();
 	if (itemType == ListItemType::INVALID_ITEM
 		|| itemType == ListItemType::GROUP_TIP_ITEM) {
 		qDebug() << "slot invalid item clicked ";
 		return;
 	}
-
 	if (itemType == ListItemType::APPLY_FRIEND_ITEM) {
 		// 创建对话框，提示用户
 		qDebug() << "apply friend item clicked ";
 		//跳转到好友申请界面
 		emit sigSwitchApplyFriendPage();
+		return;
+	}
+	if (itemType == ListItemType::CONTACT_USER_ITEM) {
+		// 创建对话框，提示用户
+		qDebug() << "contact user item clicked ";
+		//跳转到好友申请界面
+		emit sigSwitchFriendInfoPage();
 		return;
 	}
 }

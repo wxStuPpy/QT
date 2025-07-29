@@ -25,7 +25,7 @@ public slots:
 signals:
 	void sigLoadingContactUser();
 	void sigSwitchApplyFriendPage();
-	// void sigSwitchFriendInfoPage(std::shared_ptr<UserInfo> user_info);
+	void sigSwitchFriendInfoPage();
 private:
 	bool _load_pending;
 	ConUserItem* _add_friend_item;

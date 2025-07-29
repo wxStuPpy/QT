@@ -599,16 +599,16 @@ LoadingDialog{
     background-color:rgb(247,247,247);
     border: none;
 }
-#friend_apply_lb {
+#friendApplyLabel {
     font-family: "Microsoft YaHei";
     font-size: 18px;
     font-weight: normal;
 }
-#friend_apply_wid {
+#friendApplyWid {
     background-color: #f1f2f3;
     border-bottom: 1px solid #ede9e7;
 }
-#apply_friend_list {
+#applyFriendList {
     background-color: #f1f2f3;
     border-left: 1px solid #ede9e7;
     border-top: none;
@@ -645,7 +645,7 @@ ApplyFriendItem #addBtn[state='press'] {
     font-family: "Microsoft YaHei"; /* …Ë÷√◊÷ÃÂ */
     border-radius: 20px; /* …Ë÷√‘≤Ω« */
 }
-#already_add_lb{
+#alreadyAddLabel{
     color:rgb(153,153,153);
     font-size: 12px;
     font-family: "Microsoft YaHei";
