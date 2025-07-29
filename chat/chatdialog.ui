@@ -252,7 +252,7 @@
        <widget class="SearchList" name="searchList"/>
       </item>
       <item>
-       <widget class="QListWidget" name="conUserList"/>
+       <widget class="ContactUserList" name="conUserList"/>
       </item>
      </layout>
     </widget>
@@ -298,6 +298,11 @@
    <extends>QWidget</extends>
    <header location="global">chatpage.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ContactUserList</class>
+   <extends>QListWidget</extends>
+   <header location="global">contactuserlist.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

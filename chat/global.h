@@ -1,5 +1,4 @@
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#pragma once
 
 #include <QWidget>
 #include <functional>
@@ -109,4 +108,6 @@ const int  tip_offset = 5;
 
 extern QString gateURLPrefix;
 
-#endif // GLOBAL_H
+extern std::vector<QString> strs;
+extern std::vector<QString> heads;
+extern std::vector<QString> names;

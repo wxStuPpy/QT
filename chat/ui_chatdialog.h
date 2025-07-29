@@ -14,7 +14,6 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -22,6 +21,7 @@
 #include <chatpage.h>
 #include <chatuserlist.h>
 #include <clickedbtn.h>
+#include <contactuserlist.h>
 #include <customizeedit.h>
 #include <searchlist.h>
 #include <statewidget.h>
@@ -49,7 +49,7 @@ public:
     ClickedBtn *addBtn;
     ChatUserList *userList;
     SearchList *searchList;
-    QListWidget *conUserList;
+    ContactUserList *conUserList;
     QStackedWidget *stackedWidget;
     ChatPage *chatPage;
     QWidget *friendApplyPage;
@@ -167,7 +167,7 @@ public:
 
         verticalLayout_2->addWidget(searchList);
 
-        conUserList = new QListWidget(userWid);
+        conUserList = new ContactUserList(userWid);
         conUserList->setObjectName("conUserList");
 
         verticalLayout_2->addWidget(conUserList);
